@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function(){
+
+    $.ajax({
+        type: "GET",
+    //    url: "https://mr.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&list=allpages&piprop=thumbnail%7Cname&pithumbsize=0&apcontinue=&aplimit=500&callback=?",
+
+url:"https://mr.wikipedia.org/w/api.php?action=query&format=json&uselang=mr&prop=info&list=allpages&utf8=1&apmaxsize=2000&aplimit=500&callback=?",
+
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (data, textStatus, jqXHR) {
+        
+		var t=data.query.allpages;
+		var i=0;
+		
+ $('body').append("<table>");
+  $('body').append("<tr>");
+ 
+  $('body').append("<th>MARATHI TITLE</th>");
+  $('body').append("<th>WIKIDATA API CALL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>");
+  $('body').append("<th> GO TO WIKIDATA SITE EDIT</th>");
+  $('body').append("</tr>");
+            for(i=0;i<t.length;i++)
+            {
+				var objarray=t[i];
+                var title  = objarray.title.replace(/[']/g, '');
+                    $('body').append("<tr>");
+                    $('body').append("<td><a  href='https://mr.wikipedia.org/?curid="+t[i].pageid+"'>"+title+"</a></td>");
+                      
+                                
+                    var titto="https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&sites=mrwiki&titles="+title+"&languages=en&utf8=1&callback=?";
+
+
+                    $('body').append("<td><a href="+titto+">Click</a><br/><br/></td>");
+
+                   $('body').append("<td><button onClick = 'askTitle(value)' value = '"+titto+"''>Click Here to go to WikiData Page for corresponding Article</button><br/><br/></td>");
+            $('body').append("</tr>");
+			}
+
+			 $('body').append("</table>");
+		
+            console.log(data);
+        },
+        error: function (errorMessage) {
+        }
+    });
+
+});
+
+
+
+
+function askTitle(value){
+console.log(value);
+    $.ajax({
+        type: "GET",
+        url: value,
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (data, textStatus, jqXHR) {
+                console.log(data);
+  
+      console.log(Object.keys(data.entities));
+//alert(Object.keys(data.entities));
+
+if(Object.keys(data.entities)=="-1")
+			{
+				var an=confirm("There is no Data Do you want to go to wikidata to edit it" );
+
+if(an==true){window.location.href="https://www.wikidata.org/wiki"
+				}
+			
+			}
+			else
+			{
+var qid=Object.keys(data.entities);
+
+var loc="https://www.wikidata.org/wiki/"+qid;
+
+window.location.href="https://www.wikidata.org/wiki/"+qid;
+
+
+			}
+        
+        },
+        error: function (errorMessage) {
+        }
+    });
+}
+
+</script>
+
+ </head> 
+ 
+ <body style="background-color:#999" >
+ <div class="container-fluid">
+
+
+ </div>
+
+ </body>
+ 
+</html>

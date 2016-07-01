@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+{% block main %}<div id="main-slider">{% endblock %}
+{% block graph %}<li>{% endblock %}
+{% block previous %}<li>{% endblock %}
+{% block simulate %}<li class="active">{% endblock %}
+{% block settings %}<li>{% endblock %}
+{% block content %}
+<script>
+  function visi()
+{
+document.getElementById("visi").style.visibility="visible";
+}   
+
+
+
+
+function check1()
+{
+
+var no=document.getElementById("server");
+var noo=no.value;
+if(noo=="" )
+        {
+        alert("Enter IP Address");
+        no.focus();
+    return false;
+        }
+var no=document.getElementById("server");
+var IPText=no.value;
+
+    ValidIP = false;
+    ipParts = IPText.split(".");
+    if(ipParts.length==4){
+      for(i=0;i<4;i++){
+
+        TheNum = parseInt(ipParts[i]);
+        if(TheNum >= 0 && TheNum <= 255){}
+        else{break;}
+
+      }
+      if(i==4)ValidIP=true;
+    }
+   if(ValidIP==false)
+    {
+    alert("Enter correct IP Address");
+    no.focus();
+    no.select();
+    return false;
+}
+}
+function check()
+{
+
+var no=document.getElementById("pcip");
+var noo=no.value;
+if(noo=="" )
+	{
+	alert("Enter IP Address");
+	no.focus();
+    return false;
+	}
+var no=document.getElementById("pcip");
+var IPText=no.value;
+
+    ValidIP = false;   
+    ipParts = IPText.split(".");  
+    if(ipParts.length==4){  
+      for(i=0;i<4;i++){  
+          
+        TheNum = parseInt(ipParts[i]);  
+        if(TheNum >= 0 && TheNum <= 255){}  
+        else{break;}  
+          
+      }  
+      if(i==4)ValidIP=true;   
+    }  
+   if(ValidIP==false)
+    {
+    alert("Enter correct IP Address");  
+    no.focus();
+    no.select();
+    return false;
+    }
+var no=document.getElementById("pcname");
+var noo=no.value;
+if(noo=="" )
+	{
+	alert("Enter Pc name");
+	no.focus();
+	return false;
+	}
+
+}
+</script>
+  
+  
+<div class="container">
+<br>
+<div class="row">
+    <div class="col-sm-3">
+
+    <input type="submit" id="visib" onclick="visi()" value="ADD CLIENT SYSTEM" class="btn btn-primary"/>
+        <div id=visi style="visibility:hidden">
+       
+		
+        <form id="addform" class="form-horizontal" action="/nettest/addclienttoselecttosimulate/" method="POST" onsubmit="return check();">
+        
+        
+	     {% csrf_token %}
+        <h4>ADD SYSTEM</h4>
+        <div class="control-group">
+        <label class="control-label" for="pcip">Ip Address:</label>
+        <div class="controls">
+        
+            <input type="text" name="pcip" id="pcip" placeholder="IP name" class="form-control">
+<script>
+var requiredText ='192.168.1.';
+$('#pcip').on('input',function(){
+  if (String($(this).val()).indexOf(requiredText) == -1){
+    $(this).val(requiredText);
+}
+});
+</script>
+        </div>
+        </div>
+
+        <div class="control-group">
+        <label class="control-label" for="pcname">PC Name:</label>
+        <div class="controls">
+            <input type="text" name="pcname" id="pcname" placeholder="PC name" class="form-control">
+        </div>
+        </div>
+
+        
+     
+     <div class="control-group">
+        <label class="control-label" for="os">Operating System:</label>
+        <div class="controls">
+  <!--          <input type="text" name="pcname" id="os" placeholder="IP name"  class="form-control"><br>-->
+
+  <select name="os" id="os" >
+	<option value="Windows" >Windows</option>
+	<option value="Linux">Linux</option>
+    <option value="MAC">MAC</option>
+  
+  </select>
+        
+
+
+        </div>
+        </div>
+
+
+	
+        <div class="control-group">
+        <label class="control-label" for="pcname">RAM MEMORY</label>
+        <div class="controls">
+            <input type="text" name="ram" id="ram" placeholder="Ram"  class="form-control"><br>
+        </div>
+        </div>
+
+        
+		<div class="control-group">
+        <label class="control-label" for="pcname">Processor</label>
+        <div class="controls">
+            <input type="text" name="processor" id="processor" placeholder="Processor"  class="form-control"><br>
+        </div>
+        </div>
+
+   
+   </br>
+    
+       <input type="submit" class="btn btn-primary" value="ADD SYSTEM">
+        </br>
+        </form>
+        
+        
+        </div>
+        </div>
+        
+<div class="col-sm-1"></div>
+
+
+
+
+<div class="col-sm-3">
+<form method="post" action="/nettest/selecttoaddscanned/" onsubmit="return sosubmit();">
+        {% csrf_token %}
+
+	<input type="submit" value="SCAN" class="btn btn-primary">
+</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+   <div class="col-sm-1"></div>
+        
+        
+        
+       <div class="col-sm-4"> 
+        
+        <h3>Select PC to enter simulation characteristics</h3>
+        
+        
+        
+        
+       
+        
+        
+        {% ifequal i 0 %}
+           <br>
+       <p style="color:red">No systems Added</p>
+        {% else %}
+
+
+        <form id="delform" method="POST" action="/nettest/narayan/" onSubmit="return check1();">
+        {% csrf_token %}
+        <h3>List of PC's</h3>
+        <div id="try1"></div>
+        <table class="table table-striped" style="color:#000000">
+        <th>SELECT</th>
+        <th>PC IP</th>
+        <th>PC NAME</th>
+    
+        {% for host in hosts %}
+        <tr>
+       
+
+
+<td style="height:20px"><input type="checkbox" name="hostid" id="sim" value="{{ host.id }}"></td>
+        <td>{{ host.hostip }}</td><td>{{ host.hostname }} </td>
+
+        </tr>
+
+        {% endfor %}
+        </table>
+
+
+        <div class="control-group">
+        <label class="control-label" for="inputpcname">Destination Ip:</label>
+        <div class="controls">
+            <input type="text" name="server" id="server" placeholder="Enter Destination" class="form-control" style="width:270px"><br>
+        </div>
+        </div>
+
+        <input type="submit" name="simulate" class="btn btn-primary" value="Simulate">
+       <br><br> <input  type="submit" name="monitor" class="btn btn-primary" value="Default Monitor" >
+		
+		</form>
+
+       
+{% endifequal %}
+<!-- <a href="/nettest/selecttomonitor/" style="color:#000000"><u>click here for by default monitoring</u></a> -->
+      </div>
+</div>
+</div>
+ {% endblock %}       
+        
+        
+        
+        
+        
+        
+        
+        
+
+

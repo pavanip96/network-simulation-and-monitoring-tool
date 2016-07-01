@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block graph %}<li>{% endblock %}
+{% block monitor %}<li>{% endblock %}
+{% block previous %}<li class="active">{% endblock %}
+{% block simulate %}<li>{% endblock %}
+
+
+
+{% block content %}
+<br><br><br><br><br>
+<p style="color:#00b3db">The records fetched are:</p>
+<br><br>
+<div class="col-lg-1"></div>
+<div class="col-lg-11">
+<table border="1" style="color:#00b3db">
+<tr>
+    <th>ID</th>
+	<th>SIMULATION ID</th>
+        <th>MONITORING ID</th>
+        <th>PC ID</th>
+
+   <th>date</th>
+
+    <th>SOURCE IP</th>
+    <th>DESTINATION IP</th>
+        <th>total no. of uploaded packets</th>
+        <th>total no. of downloaded packets</th>
+        <th>total packets</th>
+    <th>SUM OF size of uploadedPACKETS</th>
+    <th>mean of uploaded packets</th>
+    <th>upload band</th>
+    <th>size of downloaded pack</th>
+    <th>mean of downloaded</th>
+    <th>DOWNLOAD BAND</th>
+</tr>
+
+{% for row in res %}
+<tr>
+
+<td>{{row.0}}</td>
+<td>{{row.1}}</td>
+<td>{{row.2}}</td>
+<td>{{row.3}}</td>
+<td>{{row.4}}</td>
+<td>{{row.5}}</td>
+<td>{{row.6}}</td>
+<td>{{row.7}}</td>
+<td>{{row.8}}</td>
+<td>{{row.9}}</td>
+<td>{{row.10}}</td>
+<td>{{row.11}}</td>
+<td>{{row.12}}</td>
+<td>{{row.13}}</td>
+<td>{{row.14}}</td>
+<td>{{row.15}}</td>
+
+{% endfor %}
+
+
+</tr>
+</table>
+</div>
+
+<!--<a href="{% url 'nettest:admin' %}">home page</a>-->
+{% endblock %}

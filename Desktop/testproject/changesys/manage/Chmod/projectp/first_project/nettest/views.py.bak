@@ -1,0 +1,25 @@
+from django.http import HttpResponse,HttpResponseRedirect
+from django.shortcuts import render,render_to_response
+
+# Create your views here.
+from django.core.context_processors import csrf
+
+import subprocess
+
+def index(request):
+    return render(request,'form.html')
+
+def doexecute(request):
+    c={}
+    c.update((csrf(request)))
+    dur=request.POST.get('dur','')
+    ip=request.POST.get('ip','')
+    print dur
+    print ip
+    command1="tshark -i wlan0 -a duration:"+str(dur)+" -w CapFileTest.pcap"
+    subprocess.call(command1,shell=True)
+    print "Command one Finished Starting Command Two"
+    command2="tshark -r CapFileTest.pcap -T fields -e ip.src -e frame.len -E separator=, -E occurrence=f>CapFileTestSrc.csv"
+    subprocess.call(command2,shell=True)
+    print ("Command2 done")
+    return HttpResponse("Success")

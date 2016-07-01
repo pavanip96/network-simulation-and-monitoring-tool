@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block main %}<div id="main-slider">{% endblock %}
+{% block graph %}<li>{% endblock %}
+{% block previous %}<li>{% endblock %}
+{% block simulate %}<li class="active">{% endblock %}
+{% block settings %}<li>{% endblock %}
+{% block content %}
+
+               
+
+
+<br><br>
+<div class="container">
+  <form enctype="multipart/form-data" class="form-horizontal" name="CaptureForm" action="{% url 'nettest:capture' %}" method="POST">
+  {% csrf_token %}
+        <div align="center">
+
+          
+
+
+   
+
+<br>
+<br>
+       
+               
+<button type="submit" class="btn btn-primary" value="enter test time" name="btn" id="wait" data-toggle="modal" data-target="#pleaseWaitDialog">Analyze Data</button>
+        <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-header">
+            <h2 style="color:#ffffff">Data captured.. Wait for results</h2>
+        </div>
+        <div class="modal-body">
+		<div class="progress">
+  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+   
+  </div>
+</div>
+            
+			
+        </div>
+    </div>
+       
+ </div>        
+  </form>
+</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block main %}<div id="main-slider">{% endblock %}
+{% block graph %}<li>{% endblock %}
+{% block previous %}<li>{% endblock %}
+{% block simulate %}<li>{% endblock %}
+{% block settings %}<li class="active">{% endblock %}
+{% block content %}
+<div class="container">
+
+       
+        <h3>List of PC's</h3>
+        
+        <table class="table table-striped" style="color:#000000">
+        <th>PC IP</th>
+        <th>PC name</th>
+        <th>Delete</th>
+        <th>Update</th>
+        {% for host in hosts %}
+        <tr>
+        
+
+
+
+        <td>{{ host.hostip }}</td><td>{{ host.hostname }} </td>
+		<form id="delform" method="POST" action="{% url 'nettest:deleterow' %}">
+		 {% csrf_token %}
+		<td><button type="submit" class="btn btn-primary" name="delete" value="{{host.id}}" >Delete</button></td>
+		</form>
+		<form method="POST" class="form-horizontol" action="{% url 'nettest:updaterow' %}">
+		{% csrf_token %}
+		<td><input type="button" data-id="{{host.id}}"value="update" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="open-AddBookDialog btn btn-primary"/></td>
+		<script>
+    $(document).on("click", ".open-AddBookDialog", function () {
+     var myBookId = $(this).data('id');
+     $(".modal-body #btn").val( myBookId );
+
+	 });
+
+     </script>
+        <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Update details
+            </div>
+            <div class="modal-body">
+			
+           
+			
+            <div class="control-group">
+        <label class="control-label" for="pcip">Ip Address:</label>
+        <div class="controls">
+        <input type="text" id="pcip" name="pcip" placeholder="Ip Address" class="form-control"/>
+        </div>
+        </div>
+
+        <div class="control-group">
+        <label class="control-label" for="pcname">PC Name:</label>
+        <div class="controls">
+            <input type="text" name="pcname" id="pcname" placeholder="IP name" class="form-control" value=""/><br>
+        </div>
+        </div>
+         	    
+         <button type="submit" name="update" id="btn" class="btn btn-success success" value="">update</button>       
+			
+  <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            
+        </div>
+		
+    </div>
+</div>
+</div>
+</div>
+       
+</form>
+ </tr>
+
+        {% endfor %}
+        </table>
+		<form method="POST" action="{% url 'nettest:deleteall' %}">
+		{% csrf_token %}
+		<center><button type="submit" class="btn btn-primary">Delete All</button></center>
+		</form>
+     
+</div>
+		{% endblock %}

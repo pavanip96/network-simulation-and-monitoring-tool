@@ -1,0 +1,8 @@
+1. eth0
+2. docker0
+3. ifb0
+4. nflog
+5. nfqueue
+6. eth1
+7. any
+8. lo (Loopback)

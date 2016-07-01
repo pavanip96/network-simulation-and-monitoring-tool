@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+ <form action="/nettest/process/" method="POST">
+     {% csrf_token %}
+
+  Time duration: <input type="text" name="dur" id="dur"><br>
+  Server Ip address: <input type="text" name="ip" id="ip"><br>
+  <input type="submit" value="Submit">
+</form>
+
+
+
+
+</body>
+</html>

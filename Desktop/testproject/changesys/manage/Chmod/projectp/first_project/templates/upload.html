@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block main %}<div id="main-slider">{% endblock %}
+{% block graph %}<li class="active">{% endblock %}
+{% block previous %}<li>{% endblock %}
+{% block simulate %}<li>{% endblock %}
+{% block settings %}<li>{% endblock %}
+{% block content %}
+
+    <div class="container">
+<br>
+<h3>Graphs:</h3>
+<div class="row">
+<div class="col-lg-4"></div>
+<div class="col-lg-3">
+        <form enctype="multipart/form-data" method="POST" action="{% url 'nettest:graphs' %} align="center"">
+        
+
+            {% csrf_token %}
+
+          
+ 
+<div class="form-group">
+ <label class="control-label" for="monid" >Monitoring Id:</label>
+  <div class="controls">
+         
+<input type="text" name="monid" placeholder="Monitoring ID" class="form-control"/>
+</div>
+</div>
+
+
+
+</br>
+
+            <input type="submit" name="submit" value ="Percentage of packets" class="btn btn-primary"></input>
+          
+        </form>
+</div>
+<div class="col-lg-5">
+</div>
+{% endblock %}
+

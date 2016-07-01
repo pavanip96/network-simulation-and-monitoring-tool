@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block simulate %}<li>{% endblock %}
+{% block main %}<div id="main-slider">{% endblock %}
+{% block graph %}<li class="active">{% endblock %}
+{% block previous %}<li>{% endblock %}
+
+<br>   
+<p>Uploaded packets percentage(Piechart)</p>
+{{num}}
+
+{%block content%}
+{%for  image in images %}
+<img src='/static/nettest/{{image}}' />
+{% endfor%}
+
+
+{% endblock %}

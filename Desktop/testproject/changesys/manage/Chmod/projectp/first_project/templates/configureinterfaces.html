@@ -1,0 +1,70 @@
+
+  
+
+{% extends "base.html" %}
+{% block main %}<div id="main-slider">{% endblock %}
+{% block graph %}<li>{% endblock %}
+{% block previous %}<li>{% endblock %}
+{% block simulate %}<li>{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+<div class="row">
+<div class="col-lg-4"></div>
+<div class="col-lg-4">
+<form method="post" action="/nettest/configureinterfaces/">
+            {% csrf_token %}
+  <div class="control-group">
+        <label class="control-label" for="private">Interface connected ro private network:</label>
+        <div class="controls">
+
+
+        <select name="private" id="private" class="form-control">
+
+		{% for value in interfacelist %}
+		        {% ifequal forloop.counter 1%}
+				<option value="{{value}}" selected>{{value}}</option>
+				{% else %}
+				<option value="{{value}}">{{value}}</option>
+            <!-- </select>    <input type="text" name="private" id="private"  class="form-control"><br>
+         -->
+		{% endifequal %}
+
+		{% endfor %}
+		</div>
+        </div>
+
+  <div class="control-group">
+        <label class="control-label" for="public">Interface connected ro public network:</label>
+        <div class="controls">
+
+  <select name="public" id="public" class="form-control">
+
+		{% for value in interfacelist %}
+		        {% ifequal forloop.counter 1%}
+				<option value="{{value}}" selected>{{value}}</option>
+				{% else %}
+				<option value="{{value}}">{{value}}</option>
+            <!-- </select>    <input type="text" name="private" id="private"  class="form-control"><br>
+         -->
+		{% endifequal %}
+
+		{% endfor %}
+
+            <!-- <input type="text" name="public" id="public"  class="form-control"><br>
+ -->        </div>
+        </div>
+
+
+
+<input type="submit" value="Submit" class="btn btn-primary">
+</div>
+<div class="col-lg-4"></div>
+
+
+</form>
+</div>
+</div>
+{% endblock %}
+
+

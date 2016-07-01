@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+
+
+
+<form method="POST" action="{% url 'nettest:register' %}">
+{% csrf_token %}
+ 
+       
+
+            {{ form.as_p }}
+       
+        <input type="submit" value="Register" />
+    </form>
+ <a href="{% url 'nettest:login' %}" >login here</a>
+	
+</body>
+</head>
+</html>

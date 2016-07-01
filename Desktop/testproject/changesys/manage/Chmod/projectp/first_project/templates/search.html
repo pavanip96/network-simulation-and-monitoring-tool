@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block main %}<div id="main-slider">{% endblock %}
+{% block graph %}<li>{% endblock %}
+{% block previous %}<li class="active">{% endblock %}
+{% block simulate %}<li>{% endblock %}
+{% block settings %}<li>{% endblock %}
+
+
+               
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">    
+<h3>Retrieve previous records:</h3>
+        </div>
+</div>
+<br>
+<div class="row">
+ <div class="col-lg-4"></div>
+<div class="col-lg-3">
+  <form class="form-horizontal" name="SearchForm" action="{% url 'nettest:search' %}" method="POST">
+  {% csrf_token %}
+        <div align="center">
+
+          
+         {{form.as_p}}
+   
+         
+
+<div class="form-group">
+ <label class="control-label col-sm-1" for="startdate" >Startdate:</label>
+  <div class="controls">
+              <input type="text" id="startdate" name="startdate"  placeholder="startdate" class="form-control"/> 
+			  </div>
+			  <script>
+    $(document).ready(function(){
+        var date_input =$('input[name="startdate"]');
+        var container =$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'yyyy/mm/dd',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+    </script>
+			  </div>
+         
+     <div class="form-group">   
+            <label class="control-label col-sm-1" for="enddate" >Enddate:</label>
+             <div class="controls">
+                <input type="text" name="enddate" id="enddate" placeholder="enddate" class="form-control"/>
+</div>
+<script>
+    $(document).ready(function(){
+        var date_input =$('input[name="enddate"]');
+        var container =$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'yyyy/mm/dd',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+    </script>
+</div>
+       
+       
+                <button type="submit" value="enddate" class="btn btn-primary">Submit</button>
+        </div>
+         
+  </form>
+</div>
+<div class="col-lg-5"></div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+

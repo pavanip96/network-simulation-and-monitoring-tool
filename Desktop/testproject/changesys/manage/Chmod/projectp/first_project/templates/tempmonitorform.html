@@ -1,0 +1,25 @@
+
+<h2>This is the SimulateForm </h2>
+ <form action="/nettest/doexecutetshark/{{number}}/" method="POST" >
+     {% csrf_token %}
+
+<ol>
+	
+{% for i in numberlist %}	
+	
+  <li>
+	  
+	  
+  Client Ip <input type="text" name="source{{i}}" id="source{{i}}">
+
+  </li>
+
+{% endfor%}
+
+</ol>
+
+Server Ip <input type="text" name="server" id="server">
+  Total time for Conducting Test :<input type="text" name="dur" id="dur">
+ <input type="submit" value="Submit">
+
+</form>

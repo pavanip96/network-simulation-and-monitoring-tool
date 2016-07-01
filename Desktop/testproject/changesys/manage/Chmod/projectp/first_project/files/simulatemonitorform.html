@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% block graph %}<li>{% endblock %}
+{% block monitor %}<li>{% endblock %}
+{% block previous %}<li>{% endblock %}
+{% block simulate %}<li class="active">{% endblock %}
+{% block settings %}<li>{% endblock %}
+{% block content %}
+
+<h3>Simalation Successful for the following PCs.</h3>
+
+{% ifequal i 1 %}
+
+
+<center>
+
+<h4>Upload details</h4>
+<table border="1" style="color:#000000" class="table table-bordered">
+<th><center>IP of PC</center></th>
+<th><center>PC ID</center></th>
+<th><center>Delay</center></th>
+<th><center>Jitter</center></th>
+<th><center>Loss</center></th>
+<th><center>Bandwidth</center></th>
+
+{% for particularobj in upload  %}
+
+
+<tr>
+<td><center>{{particularobj.source}}</center></td>
+<td><center>{{particularobj.pc_name}}</center></td>
+<td><center>{{ particularobj.delay }}</center></td>
+<td><center>{{ particularobj.jitter }}</center></td>
+<td><center>{{ particularobj.packetloss }}</center></td>
+
+<td><center>{{ particularobj.band }}</center></td>
+
+</center></td>
+</tr>
+
+
+
+
+
+
+
+
+
+<!--
+{% for pc in allpc %}
+<tr>
+<td><center>{{pc.pcip}}</center></td>
+<td><center>{{pc.pcid}}</center></td>
+<td><center>{{ pc.simulationparams.delay }}</center></td>
+<td><center>{{ pc.simulationparams.loss }}</center></td>
+<td><center>{{ pc.simulationparams.bw }}</center></td>
+</center></td>
+</tr>
+{% endfor %}
+
+-->
+{% endfor %}
+</table>
+</center>
+{% endifequal %}
+
+
+
+
+
+
+{% ifequal j 1 %}
+
+
+<center>
+
+<h4>Download details</h4>
+<table border="1" style="color:#000000" class="table table-bordered">
+<th><center>IP of PC</center></th>
+<th><center>PC ID</center></th>
+<th><center>Delay</center></th>
+<th><center>Jitter</center></th>
+<th><center>Loss</center></th>
+<th><center>Bandwidth</center></th>
+
+{% for particularobj in download  %}
+
+
+<tr>
+<td><center>{{particularobj.source}}</center></td>
+<td><center>{{particularobj.pc_name}}</center></td>
+<td><center>{{ particularobj.delay }}</center></td>
+<td><center>{{ particularobj.jitter }}</center></td>
+<td><center>{{ particularobj.packetloss }}</center></td>
+
+<td><center>{{ particularobj.band }}</center></td>
+
+</center></td>
+</tr>
+
+<!--
+{% for pc in allpc %}
+<tr>
+<td><center>{{pc.pcip}}</center></td>
+<td><center>{{pc.pcid}}</center></td>
+<td><center>{{ pc.simulationparams.delay }}</center></td>
+<td><center>{{ pc.simulationparams.loss }}</center></td>
+<td><center>{{ pc.simulationparams.bw }}</center></td>
+</center></td>
+</tr>
+{% endfor %}
+
+-->
+{% endfor %}
+</table>
+</center>
+{% endifequal %}
+
+
+</br>
+</br>
+
+<div class="row">
+<div class="col-lg-1"></div>
+<div class="col-lg-4">
+<form id="info" class="form-horizontal" action="/nettest/executetshark/" method="POST" >
+
+
+	     {% csrf_token %}
+		 <div class="control-group">
+        <label class="control-label" for="inputpcip">Time:</label>
+        <div class="controls">
+        <input type="text" id="dur" name="dur" placeholder="Enter Time">
+        </div>
+        </div>
+
+        <div class="control-group">
+        <label class="control-label" for="inputpcname">Destination Ip:</label>
+        <div class="controls">
+            <input type="text" name="server" id="server" placeholder="Enter Destination"><br>
+        </div>
+        </div>
+        <br>
+		<input type="submit" class="btn btn-primary" value="Submit" name="btn" id="wait" data-toggle="modal" data-target="#pleaseWaitDialog" />
+        <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-header">
+            <h1>simulation going on</h1>
+        </div>
+        <div class="modal-body">
+            <div class="progress progress-striped active">
+                <div class="bar" style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+<div class="col-lg-7"></div>
+</div>
+{% endblock %}

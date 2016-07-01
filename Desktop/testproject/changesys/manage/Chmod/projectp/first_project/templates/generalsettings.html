@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block main %}<div id="main-slider">{% endblock %}
+{% block graph %}<li>{% endblock %}
+{% block previous %}<li>{% endblock %}
+{% block simulate %}<li>{% endblock %}
+{% block settings %}<li class="active">{% endblock %}
+
+{% block content %}
+<script>
+function Clicked()
+{
+if(confirm("Do you want to delete all rules"))
+return true;
+else
+return false;
+
+}
+</script>
+<div class="container">
+<br><br><br><br><br><br>
+<div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-1">
+ <img src="/static/images/inst.jpg" height="110" width="100" class="img-rounded">
+<a href="/nettest/guide" style="color:#000000">Installation Guide</a>
+</div>
+<div class="col-sm-1"></div>
+<div class="col-sm-1">
+ <img src="/static/images/conf.png" height="110" width="100" class="img-rounded">
+<a href="/nettest/configure/" style="color:#000000">Configure Interfaces</a>
+</div>
+<div class="col-sm-1"></div>
+<div class="col-sm-1">
+ <img src="/static/images/images/del.jpg" height="110" width="100" class="img-rounded">
+<a href="/nettest/deletesettings/" style="color:#000000" onclick="return Clicked();">Delete All rules</a>
+</div>
+<div class="col-sm-1"></div>
+<div class="col-sm-1">
+ <img src="/static/images/mana.jpg" height="110" width="100" class="img-rounded">
+<a href="/nettest/manage/" style="color:#000000">Manage Systems</a>
+</div>
+
+<div class="col-sm-2"></div>
+</div>
+{% endblock %}

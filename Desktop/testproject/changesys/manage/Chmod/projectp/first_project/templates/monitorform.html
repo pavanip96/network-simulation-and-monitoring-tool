@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+ <form action="/nettest/monitorform/" method="POST">
+     {% csrf_token %}
+  Enter the number of clients you entered earlier:(Will not be needed after Database)<input type="text" name="clientno" id="clientno"><br>
+  
+  <input type="submit" value="Submit">
+</form>
+
+
+
+
+</body>
+</html>

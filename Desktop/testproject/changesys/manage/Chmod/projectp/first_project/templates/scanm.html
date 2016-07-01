@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block main %}<div id="main-slider">{% endblock %}
+{% block graph %}<li>{% endblock %}
+{% block previous %}<li>{% endblock %}
+{% block simulate %}<li class="active">{% endblock %}
+{% block settings %}<li>{% endblock %}
+{% block content %}
+  <script>
+  function visi()
+{
+document.getElementById("visi").style.visibility="visible";
+}   
+
+
+
+
+function check()
+{
+
+var no=document.getElementById("pcip");
+var noo=no.value;
+if(noo=="" )
+  {
+  alert("Enter IP Address");
+  no.focus();
+    return false;
+  }
+var no=document.getElementById("pcip");
+var IPText=no.value;
+
+    ValidIP = false;   
+    ipParts = IPText.split(".");  
+    if(ipParts.length==4){  
+      for(i=0;i<4;i++){  
+          
+        TheNum = parseInt(ipParts[i]);  
+        if(TheNum >= 0 && TheNum <= 255){}  
+        else{break;}  
+          
+      }  
+      if(i==4)ValidIP=true;   
+    }  
+   if(ValidIP==false)
+    {
+    alert("Enter correct IP Address");  
+    no.focus();
+    no.select();
+    return false;
+    }
+var no=document.getElementById("pcname");
+var noo=no.value;
+if(noo=="" )
+  {
+  alert("Enter Pc name");
+  no.focus();
+  return false;
+  }
+
+}
+</script>
+  
+  
+  
+<div class="container">
+<div class="row">
+<div class="col-lg-3">
+<br>
+
+   
+        <!-- <div id=visi style="visibility:hidden"> -->
+       
+		
+
+
+
+
+
+
+
+
+        
+        </div>
+
+		
+</div>
+        
+
+     {% ifequal ifscan 0 %}
+           <br>
+       <p style="color:red">Scan Complete No Systems Present</p>
+        {% else %}
+
+
+        <form  method="POST" action="/nettest/scanclienttodatabase/">
+
+        {% csrf_token %}
+        <h3>List of PC's Scanned</h3>
+        <div id="try1"></div>
+        <table class="table table-striped" style="width:600px;color:#000000">
+        
+		<th>SELECT</th>
+		<th>PC NAME</th>
+        <th>PC IP</th>
+       
+    
+        {% for pi,temp in abc_bac %}
+        <tr>
+        
+
+
+     <td style="height:20px"><input type="checkbox" name="ipps" id="ipps" value="{{pi}}"></td>
+        <td><input type="text" name="{{pi}}" id="info" value="{{temp}}"></td><td>  {{pi}}  </td>
+
+        </tr>
+        {% endfor %}
+        </table>
+        <input type="submit" class="btn btn-primary" value="ADD">
+        </form>
+
+       
+         {% endifequal %}
+
+
+
+
+
+
+    <div class="col-lg-2"></div>       
+        
+        
+    <hr>
+
+</div>
+</div>
+</div>
+  {% endblock %}      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+

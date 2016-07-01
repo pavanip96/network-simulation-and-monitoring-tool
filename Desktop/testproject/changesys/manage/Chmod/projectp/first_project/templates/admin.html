@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Home</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/static/css/main.css" rel="stylesheet">
+ <script type="text/javascript">
+    function clicked() {
+       if (confirm('Do you want to go into settings)) {
+           yourformelement.submit();
+       } else {
+           return false;
+       }
+    }
+</script>
+   
+</head>
+
+    <body>
+  {% block content %}
+
+
+	<section id="main-slider">
+  
+		 <div class="container-fluid">
+        
+            <div class="navbar navbar-default">
+             
+                
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#main-slider"><span class="glyphicon glyphicon-home"></span></a></li>
+                        
+                        <li><a href="/nettest/selecttosimulate">Simulating</a></li>
+                        <li><a href="/nettest/searchini">Previous results</a></li>
+                        <li><a href="/nettest/graphs">Graphs</a></li>
+			<li><a href="/nettest/generalsettings">Settings</a></li>
+
+                    
+                    </ul>
+					<ul class="nav navbar-nav navbar-right">
+                        
+	                    <li><a href="/nettest/registerini"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                    </ul>
+               
+					
+            </div>
+        </div>  
+  
+
+			
+           
+                <div class="container">
+                    <div class="carousel-content">
+                        <center><h1>Network simulating and monitoring tool</h1></center>
+                       
+                    </div>
+                </div>
+			</section>
+        
+
+    <section id="services">
+        <div class="container">
+        <br><br><br><br><br><br><br>
+        <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-1">
+	 
+  <form class="form-horizontal" id="upload" name="myForm"" enctype="multipart/form-data" method="POST" action="/nettest/upload/">
+        
+    
+            {% csrf_token %}
+         <img src="/static/images/images/gra.jpg" class="img-rounded" height="110" width="100" href="/nettest/upload/">  
+        <div class="form-group">
+      		
+        <input type="submit"  class="btn btn-primary"  name="submit" value="Graphs"/>
+		 </div>
+        </form>
+    </div>
+    
+
+
+    
+
+
+	<div class="col-sm-1"></div>
+    <div class="col-sm-1">
+        
+        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{% url 'nettest:searchini' %}">
+        
+
+            {% csrf_token %}
+            <img src="/static/images/images/cal.jpg" height="110" width="100" class="img-rounded">
+            <div class="form-group">
+		
+            <input type="submit" class="btn btn-primary"  value="past records"  />
+			</div>
+        </form>
+
+    </div>
+
+
+
+
+	<div class="col-sm-1"></div>
+    <div class="col-sm-1">
+        
+        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/nettest/selecttosimulate/">
+        
+
+            {% csrf_token %}
+            <img src="/static/images/images/sim.png" height="110" width="100"class="img-rounded">
+            <div class="form-group">
+
+            <input type="submit" class="btn btn-primary"  value="Simulate"  />
+		</div>
+        </form>
+	
+    </div>  
+	
+
+       
+		
+
+
+<div class="col-sm-1"></div>
+
+
+
+    <div class="col-sm-1">
+     
+        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/nettest/generalsettings/"  >
+        
+
+            {% csrf_token %}
+            <img src="/static/images/sett.jpg" height="110",width="100" class="img-rounded" style="positon:fixed">
+            <div class="form-group">
+            <input type="submit" class="btn btn-primary"  value="Settings"  />
+			</div>
+        </form>
+	
+    </div>  
+<div class="col-sm-2"></div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+            </div> <!--/.container-->
+      
+    </section><!--/#services-->
+
+   
+
+
+
+   
+</body>
+</html>        
+
+
+{% endblock %}

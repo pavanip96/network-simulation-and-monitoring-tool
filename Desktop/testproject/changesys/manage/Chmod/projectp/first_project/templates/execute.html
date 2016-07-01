@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block graph %}<li class="active">{% endblock %}
+{% block previous %}<li>{% endblock %}
+{% block simulate %}<li>{% endblock %}
+{% block setttings %}<li>{% endblock %}
+<!--
+<table border="1">
+<tr>
+    <th>ID</th>
+    
+   
+    <th>date</th>
+    <th>SOURCE IP</th>
+    <th>DESTINATION IP</th> 
+    <th>SUM OF UPLOADED PACKETS</th>
+    <th>SUM OF DOWNLOADED PACKETS</th>
+    <th>UPLOAD MEAN</th> 
+    <th>DOWNLOAD MEAN</th>
+    <th>UPLOAD BANDWIDTH</th>
+    <th>DOWNLOAD BANDWIDTH</th>
+   
+</tr>
+{% for row in data2 %}
+<tr>
+
+<td>{{row.0}}</td>
+<td>{{row.1}}</td>
+<td>{{row.2}}</td>
+
+<td>{{row.3}}</td>
+<td>{{row.4}}</td>
+<td>{{row.5}}</td>
+<td>{{row.6}}</td>
+<td>{{row.7}}</td>
+<td>{{row.8}}</td>
+<td>{{row.9}}</td>
+
+
+</tr>
+{% endfor %}
+</table>
+
+-->
+{% block content %}
+<br><br>   
+<p>UPLOADED PACKETS </p>
+
+
+
+ {% load static %}
+<img src="{% static 'nettest/mainplotg.jpeg' %}">image</img>
+<p>downloaded packets</p>
+
+
+ {% load static %}
+<img src="{% static 'nettest/plotdown.jpeg' %}">image</img> 
+ 
+ 
+<p>piechart for uploaded packets</p>
+
+{% load static %}
+
+<img src="{% static 'nettest/piechart2.jpeg' %}">image</img>
+
+
+
+ {% load static %}
+<p>piechart for downloaded packets</p>
+<img src="{% static "nettest/piechart2down.jpeg" %}">image</img> 
+
+<p>LINE GRAPH </p>
+
+
+
+ {% load static %}
+<img src="{% static 'nettest/linegraph.jpeg' %}">image</img>
+<p>downloaded packets</p>
+
+<p>line graph for downloaded packets bandwidth</p>
+
+{% load static %}
+
+<img src="{% static 'nettest/linegraph2.jpeg' %}">image</img>
+
+
+
+
+
+
+
+
+
+
+
+</br>
+<!--<a href="{% url 'nettest:admin' %}"><b>RETURN TO HOME<b></a></br> -->
+
+{% endblock %}

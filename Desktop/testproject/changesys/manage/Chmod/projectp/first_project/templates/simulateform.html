@@ -1,0 +1,248 @@
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>This is the SimulateForm </h2>
+ <form action="/nettest/doexecutetc/" method="POST" >
+     {% csrf_token %}
+
+  Delay <input type="text" name="Delay" id="Delay"><br>
+  Jitter <input type="text" name="Jitter" id="Jitter"><br>
+  Packet Loss <input type="text" name="ploss" id="ploss"><br>
+  Available Bandwidth <input type="text" name="bandwidth" id="bandwidth"><br>
+  <input type="submit" value="Submit">
+</form>
+
+
+
+
+</body>
+</html>
+
+
+-->
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+ 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="first.js"></script>
+  </head>
+  <div class="container-fluid">
+ <body style="background-color:#abcdef"> 
+  
+   <nav class="navbar navbar-default">
+ 
+    
+    <ul class="nav navbar-nav">
+	
+      <li><a href="home.html">Home</a></li>
+      <li class="active"><a href="simulate.html">simulate</a></li>
+      <li><a href="moniter.html">monitor</a></li>
+      <li><a href="graph.html">graph</a></li>
+	  <li><a href="previous.html">previous results</a></li>
+	   </ul>
+	  
+	 <ul class="nav navbar-nav navbar-right">
+      <li><a href="home.html"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+	  <li><a href="first.html">Logout</a></li>
+     </ul>
+	 
+</nav> 
+<h2>Simulating</h2>
+    <br><br><br>
+	<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-5">
+	<form class="form-horizontal" role="form" name="myForm" action="form.html" >
+		
+		    {% csrf_token %}
+    <div class="form-group">
+    <label class="control-label col-sm-3" for="Delay">Delay:</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" name="Delay" id="Delay" onKeyPress="return numbersonly(event)">
+	  </div>
+    </div>
+  <div class="form-group">
+    <label class="control-label col-sm-3" for="Jitter">Jitter:</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" name="Jitter" id="Jitter" onKeyPress="return numbersonly(event)">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label col-sm-3" for="ploss">Packet loss:</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" name="ploss" id="ploss" onKeyPress="return numbersonly(event)">
+    </div>
+  </div>
+  
+   <div class="form-group">
+    <label class="control-label col-sm-3" for="bandwidth">Bandwidth:</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" name="bandwidth" id="bandwidth"onKeyPress="return numbersonly(event)">
+    </div>
+  </div>
+  
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="button" name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-primary" onClick="return simnull()" />
+	  <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Confirm Submit
+            </div>
+            <div class="modal-body">
+                Are you sure you want to submit the details?
+				</div>
+				 <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            <a href="/nettest/doexecutetc/" id="submit" class="btn btn-success success">Submit</a>
+        </div>
+    </div>
+</div>
+	  </div>
+   </div>
+<!--   <script>
+   $('#submit').click(function(){
+    alert('submitting');
+    $('#formfield').submit();
+});
+
+
+
+INIINITN-----------------------------
+</script>
+	  </div>
+	  </div>
+  </form>
+   
+  </div>
+  </div>
+  </body>
+  </div>
+  </html>
+  
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head><link rel="stylesheet" href="bstyle.css" type="text/css">
+
+<meta charset="utf-8">
+ 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="first.js"></script> 
+ </head>
+  
+  <div class="container-fluid">
+ <body style="background-color:#abcdef"> 
+  
+   <nav class="navbar navbar-inverse">
+ 
+    
+    <ul class="nav navbar-nav">
+	
+      <li><a href="home.html">Home</a></li>
+      <li class="active"><a href="simulate.html">simulate</a></li>
+      <li><a href="moniter.html">monitor</a></li>
+      <li><a href="graph.html">graph</a></li>
+	  <li><a href="previous.html">previous results</a></li>
+	   </ul>
+	  
+	 <ul class="nav navbar-nav navbar-right">
+      <li><a href="home.html"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+	  <li><a href="first.html">Logout</a></li>
+     </ul>
+	 
+</nav> 
+<h2>Simulating</h2>
+    <br><br><br>
+	<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-5">
+	 
+	<form class="form-horizontal" role="form" name="myForm" id="formfield">
+    <div class="form-group">
+    <label class="control-label col-sm-3" for="Delay">Delay:</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" id="Delay" name="Delay" onKeyPress="return numbersonly(event)">
+	  </div>
+    </div>
+  <div class="form-group">
+    <label class="control-label col-sm-3" for="Jitter">Jitter:</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" id="Jitter" name="Jitter" onKeyPress="return numbersonly(event)">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label col-sm-3" for="ploss">Packet loss:</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" id="ploss" name="ploss" onKeyPress="return numbersonly(event)">
+    </div>
+  </div>
+   <div class="form-group">
+    <label class="control-label col-sm-3" for="bandwidth">Bandwidth:</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" id="bandwidth" name="bandwidth" onKeyPress="return numbersonly(event)">
+    </div>
+  </div>
+  <div class="form-group">
+  
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="button" name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-primary" onClick="return simnull()" />
+	  </div>
+	  <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Confirm Submit
+            </div>
+            <div class="modal-body">
+                Are you sure you want to submit the details?
+				</div>
+				 <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            <a href="#" id="submit" class="btn btn-success success">Submit</a>
+        </div>
+    </div>
+</div>
+	  </div>
+   
+   <script>
+   $('#submit').click(function(){
+    
+    $('#formfield').submit();
+});
+</script>
+	  </div>
+	  </div>
+  </form>
+   
+  </div>
+  </div>
+  </body>
+  </div>
+  </html>
+  
+
+

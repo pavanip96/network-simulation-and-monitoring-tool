@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  
+
+
+<form method="post" action="/nettest/narayan/">
+
+        {% csrf_token %}
+        <h3>List of PC's</h3>
+        <div id="try1"></div>
+        <table class="table table-striped" style="width:600px;color:#000000">
+        <th>SELECT</th>
+        <th>PC IP</th>
+        <th>PC NAME</th>
+    
+        {% for host in hosts %}
+        <tr>
+        
+
+
+            <td style="height:20px"><input type="checkbox" name="hostid" id="sim" value="{{ host.id }}"></td>
+        <td>{{ host.hostip }}</td><td>{{ host.hostname }} </td>
+
+        </tr>
+
+        {% endfor %}
+        </table>
+	
+
+
+
+<input type="submit" name="simulate"  value="S1">
+<input type="submit" name="monitor" value="S2">
+
+</form>
+
+
+
+
+
+
+
+
+ </body>
+</html>

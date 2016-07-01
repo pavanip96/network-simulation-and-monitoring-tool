@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block main %}<div id="main-slider">{% endblock %}
+{% block graph %}<li>{% endblock %}
+{% block previous %}<li class="active">{% endblock %}
+{% block simulate %}<li>{% endblock %}
+{% block settings %}<li>{% endblock %}
+
+
+
+{% block content %}
+<div class="container-fluid">
+<br>
+<p style="color:#000000">The records fetched between {{startdate}}  and {{enddate}} are:</p>
+<br>
+
+	
+
+<div class="row">
+<div class="col-lg-12">
+<table class="table table-striped" style="color:#000000;width:700px">
+<tr>
+    
+        <th>MONITORING ID</th>
+        <th>PC NAME</th>
+<th>GRAPH</th>
+<th>COMPARE GRAPHS</th>
+   <th>DATE</th>
+
+    <th>CLIENT IP</th>
+    <th>SERVER IP</th>
+        <th>UPLOADED PACKETS</th>
+        <th>DOWNLOADED PACKETS</th>
+        <th>TOTAL PACKETS</th>
+    
+    <th>AVERAGE UPLOADED PACKETS</th>
+    <th>UPLOAD BANDWIDTH</th>
+    
+    <th>AVERAGE DOWNLOADED PACKETS</th>
+    <th>DOWNLOAD BANDWIDTH</th>
+</tr>
+
+{% for row in data %}
+<tr>
+
+<td><a href="/nettest/simparam/?id={{row.3}}@{{row.1}}" target="_blank" >{{row.2}}</a></td>
+<td>{{row.3}}</td>
+<td><a href="/nettest/livegraphs/?id={{row.3}}@{{row.2}}" target="_blank">GRAPH</a><div id="popup"></div></td>
+<td><a href="/nettest/comparegraph/?id={{row.3}}@{{row.2}}" target="_blank">COMPARE GRAPHS</a><div id="popup"></div></td>
+<td>{{row.4}}</td>
+<td>{{row.5}}</td>
+<td>{{row.6}}</td>
+<td>{{row.7}}</td>
+<td>{{row.8}}</td>
+<td>{{row.9}}</td>
+
+<td>{{row.11}}</td>
+<td>{{row.12}}</td>
+
+<td>{{row.14}}</td>
+<td>{{row.15}}</td>
+
+{% endfor %}
+
+
+</tr>
+</table>
+</div>
+</div>
+</div>
+
+<!--<a href="{% url 'nettest:admin' %}">home page</a>-->
+{% endblock %}

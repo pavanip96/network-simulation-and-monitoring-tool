@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>settings</title>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+             {% load staticfiles %}
+            <link rel="stylesheet" href="{% static 'css/home.css' %}">
+            <link rel="stylesheet" href="{% static 'css//bootstrap.min.css' %}">
+            
+            
+
+    </head>
+     <body>
+
+<div class="container" align="right">
+
+  <div class="btn-group" align="right">
+   
+    <input type="button" class="btn btn-primary" onClick="window.location.href='{% url 'display:admin' %}'" value="back to home"/></a>
+    <button type="button" class="btn btn-primary">Profile Details</button>
+
+    <input type="button" class="btn btn-primary" onClick="window.location.href='{% url 'display:login' %}'" value="logout"/></a>
+  </div>
+</div>
+
+
+<body>
+
+<div class="container" align="center">
+  <h2>Select the machines</h2>
+  
+  <form role="form">
+    <div class="checkbox">
+      <label><input type="checkbox" value="10.123.43.3">10.123.43.3</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" value="10.14.35.233">10.14.35.233</label>
+    </div>
+    <div class="checkbox disabled">
+      <label><input type="checkbox" value="10.12.134.135" disabled>10.12.134.135</br>(this machine is disabled temporarily)</label>
+    </div>
+
+    <div class="checkbox">
+      <label><input type="checkbox" value="10.53.23.3">10.53.23.3 </label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" value="10.54.36.233">10.54.36.233</label>
+    </div>
+    <div >
+      <label><input type="submit" value="submit"></label>
+    </div>
+
+
+  </form>
+</div>
+
+</body>
+</html>

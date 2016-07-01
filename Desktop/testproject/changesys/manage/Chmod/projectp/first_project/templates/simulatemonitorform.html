@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block main %}<div id="main-slider">{% endblock %}
+{% block graph %}<li>{% endblock %}
+{% block previous %}<li>{% endblock %}
+{% block simulate %}<li class="active">{% endblock %}
+{% block settings %}<li>{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        
+    <div class="col-lg-12">   
+
+<h3>Simulation Successful for the following PCs.</h3>
+
+{% ifequal i 1 %}
+
+
+<center>
+
+<h4>Upload details</h4>
+<table  style="color:#000000" class="table table-striped">
+<th><center>IP of PC</center></th>
+<th><center>PC ID</center></th>
+<th><center>Delay</center></th>
+<th><center>Jitter</center></th>
+<th><center>Loss</center></th>
+<th><center>Bandwidth</center></th>
+
+{% for particularobj in upload  %}
+
+
+<tr>
+
+<td><center>{{particularobj.source}}</center></td>
+<td><center>{{particularobj.pc_name}}</center></td>
+<td><center>{{ particularobj.delay }}</center></td>
+<td><center>{{ particularobj.jitter }}</center></td>
+<td><center>{{ particularobj.packetloss }}</center></td>
+
+<td><center>{{ particularobj.band }}</center></td>
+
+
+</tr>
+
+
+
+{% endfor %}
+</table>
+</center>
+{% endifequal %}
+    </div>
+    </div>
+
+{% ifequal j 1 %}
+
+<div class="row">
+    
+<div class="col-lg-12">
+<center>
+
+<h4>Download details</h4>
+<table style="color:#000000" class="table table-striped">
+<th><center>IP of PC</center></th>
+<th><center>PC ID</center></th>
+<th><center>Delay</center></th>
+<th><center>Jitter</center></th>
+<th><center>Loss</center></th>
+<th><center>Bandwidth</center></th>
+
+{% for particularobj in download  %}
+
+
+<tr>
+<td><center>{{particularobj.source}}</center></td>
+<td><center>{{particularobj.pc_name}}</center></td>
+<td><center>{{ particularobj.delay }}</center></td>
+<td><center>{{ particularobj.jitter }}</center></td>
+<td><center>{{ particularobj.packetloss }}</center></td>
+
+<td><center>{{ particularobj.band }}</center></td>
+
+
+</tr>
+
+
+
+{% endfor %}
+</table>
+</center>
+{% endifequal %}
+</div>
+    </div>
+
+
+
+</br>
+</br>
+
+<div class="row">
+<div class="col-lg-1"></div>
+<div class="col-lg-3">
+<form id="info" class="form-horizontal" action="/nettest/executetshark/" method="POST" >
+
+
+	     {% csrf_token %}
+		 <div class="control-group">
+        <label class="control-label" for="dur">Time:</label>
+        <div class="controls">
+        <input type="text" id="dur" name="dur" placeholder="Enter Time in sec" class="form-control">
+        </div>
+        </div>
+
+        <!-- <div class="control-group">
+        <label class="control-label" for="server">Destination Ip:</label>
+        <div class="controls">
+            <input type="text" name="server" id="server" placeholder="Enter Destination" class="form-control"><br>
+        </div>
+        </div> -->
+
+		<input type="hidden" name="server" value="{{server}}">
+
+	  <div class="control-group">
+        <label class="control-label" for="inputpcname">Destination IP:</label>
+        <div class="controls">
+           
+		   {{server}}
+		   
+		   <br>
+		   		   <br>
+		   <br>
+
+
+
+        </div>
+        </div>
+		
+		
+		
+		<br>
+		<input type="submit" class="btn btn-primary" value="Submit" name="btn" id="pleaseWaitDailog" data-toggle="modal" data-target="#pleaseWaitDialog" />
+        <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-header">
+            <h2 style="color:#ffffff">Capturing going on</h2>
+        </div>
+        <div class="modal-body">
+		<div class="progress">
+  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+   
+  </div>
+</div>
+            
+			
+        </div>
+    </div>
+	
+</form>
+</div>
+<div class="col-lg-8"></div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+
+<h2>This is the SimulateForm </h2>
+
+
+
+{% for i in numberlist %}	
+
+
+<form action="{% url 'nettest:store' %}" method="POST" >
+ {% csrf_token %}
+	
+  <li>
+ 
+  <input type="hidden" name="numberlist" value={{numberlist}}>
+	  
+	  
+  Source Ip <input type="text" name="source{{i}}" id="source{{i}}">
+  Destination Ip <input type="text" name="dest{{i}}" id="dest{{i}}">
+  Delay <input type="number" name="Delay{{i}}" id="Delay{{i}}">
+  Jitter <input type="number" name="Jitter{{i}}" id="Jitter{{i}}">
+  Packet Loss <input type="number" name="ploss{{i}}" id="ploss{{i}}">
+  Available Bandwidth <input type="text" name="bandwidth{{i}}" id="bandwidth{{i}}">
+
+  </li>
+
+{% endfor%}
+
+</ol>
+
+ <input type="submit" value="Submit">
+
+</form>
